@@ -1,0 +1,48 @@
+﻿@model Green.Models.Medicine
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Are you sure to delete this Address?</h4>
+</div>
+
+<div class="modal-body">
+    
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MedicineName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MedicineName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Group)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Group)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Dosage_Information)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dosage_Information)
+            </dd>
+        </dl>
+
+    </div>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-footer">
+            <button class="btn" type="button" data-dismiss="modal">No</button>
+            <input class="btn btn-danger" type="submit" value="Yes" />
+        </div>
+    }

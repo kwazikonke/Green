@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Green.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-hover table-striped" id="my_list">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentModel.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceDescription)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentModel.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceDescription)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<script type="text/javascript">
+    $('#my_list').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#my_list')
+       .removeClass('display')
+       .addClass('table table-striped table-hover');
+</script>

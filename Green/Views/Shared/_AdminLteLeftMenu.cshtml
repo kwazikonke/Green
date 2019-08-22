@@ -1,0 +1,206 @@
+﻿@using Microsoft.AspNet.Identity
+@*
+    This partial controls the left menu of the AdminLTE dashboard and is called automatically by _AdminLteLayout
+       This is where you can add, modify, or remove navigation options in your app
+       TODO: This preserves the links as-is for the demo, which lead to broken pages!
+       It's up to you to make sure these links either get deleted or lead somewhere REAL!
+*@
+
+@{
+    Layout = null;
+}
+
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                @*<img src="/Content/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image" />*@
+
+            </div>
+        </div>
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">WELCOME TO RAMRAJ DENTISTRY</li>
+            <li class="treeview-menu">
+                <a href="~/Home/Index.cshtml">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+
+
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-money"></i> <span>Surgery Statistics</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li>@Html.ActionLink("Surgery Stats", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact us", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Find Us", "Map", "ContactUs")</li>
+
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-money"></i> <span>Make an Account </span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li>@Html.ActionLink("Join Us", "Register", "Account")</li>
+                    <li>@Html.ActionLink("LogIn", "Login", "Account")</li>
+
+                </ul>
+            </li>
+
+
+
+
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-money"></i> <span> View Appointments </span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Appointment/Index"><i class="fa fa-circle-o"></i> View All Appointments</a></li>
+                        <li><a href="~/Procedures/Index"><i class="fa fa-circle-o"></i>Procedures</a></li>
+                        <li><a href="~/Home/About"><i class="fa fa-circle-o"></i> Hospital Statistics</a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa  fa-dollar"></i>
+                        <span>Administration</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Administration/Create"><i class="fa fa-circle-o"></i>Add Booking Slot </a></li>
+                        <li><a href="~/Administration/Index"><i class="fa fa-circle-o"></i>View Administations</a></li>
+                     
+
+
+                    </ul>
+                </li>
+               
+                
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-users"></i>
+                        <span>User Management</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Roles/AddRole"><i class="fa fa-circle-o"></i> Create Roles</a></li>
+                        <li><a href="~/RegisteredUsers/Index"><i class="fa fa-circle-o"></i> View Users</a></li>
+                        <li><a href="~/Doctor/Create"><i class="fa fa-circle-o"></i> Add Doctor</a></li>
+                        <li><a href="~/Doctor/Index"><i class="fa fa-circle-o"></i> View Doctors</a></li>
+
+                    </ul>
+                </li>
+
+            }
+
+
+         
+
+         
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-edit"></i> <span>Invoices</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                       
+                        <li><a href="~/RegisteredUsers/Details"><i class="fa fa-circle-o"></i> View Invoices </a></li>
+
+                    </ul>
+                </li>
+
+        
+            }
+
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-edit"></i> <span>Assign Rooms</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li><a href="~/MyRooms/Create"><i class="fa fa-circle-o"></i>Add Room Category </a></li>
+                        <li><a href="~/MyRooms/Index"><i class="fa fa-circle-o"></i> View Room Categories</a></li>
+
+                        <li><a href="~/Rooms/Create"><i class="fa fa-circle-o"></i> Create Rooms  </a></li>
+                        <li><a href="~/Rooms/AddDr"><i class="fa fa-circle-o"></i> Assign Doctors to Rooms </a></li>
+                  
+
+                    </ul>
+                </li>
+
+
+            }
+
+            @if (Request.IsAuthenticated && User.IsInRole("Doctor"))
+            {
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar-plus"></i>
+                        <span>Check Appointments</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="~/Doctor/UpcomingAppointments"><i class="fa fa-circle-o"></i> Upcoming Appoinments</a></li>
+                        <li><a href="~/Appointment/PatientIndex"><i class="fa fa-circle-o"></i>Create Booking </a></li>
+                     
+
+                        <li>@Html.ActionLink("Upcoming Appointments", "UpcomingAppointments", new { Controller = "Doctor", Action = "UpcomingAppointments", DocID = User.Identity.Name })</li>
+                       
+
+                    </ul>
+                </li>
+            }
+
+
+            @if (Request.IsAuthenticated && User.IsInRole("Patient"))
+            {
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-edit"></i> <span>Make Appointment</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+
+
+                        <li><a href="~/RegisteredUsers/Details"><i class="fa fa-circle-o"></i> My Appointments</a></li>
+                        <li><a href="~/Doctor/AllDoctors"><i class="fa fa-circle-o"></i>Dentists</a></li>
+                        <li><a href="~/Doctor/Index"><i class="fa fa-circle-o"></i>Create Appointment</a></li>
+                      
+
+
+                    </ul>
+                </li>
+
+            }
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>
+

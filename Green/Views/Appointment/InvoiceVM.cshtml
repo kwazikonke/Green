@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Green.ViewModels.InvoiceViewModel>
+
+@{
+    ViewBag.Title = "InvoiceVM";
+}
+
+<h2>InvoiceVM</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcedureName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcedurePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcedureName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcedurePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InvoiceNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceNumber })
+        </td>
+    </tr>
+}
+
+</table>
+<a href="javascript:window.print()">Please click here to print this page</a>

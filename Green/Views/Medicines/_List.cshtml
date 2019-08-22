@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Green.Models.Medicine>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <strong>Address List</strong>
+    </div>
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MedicineName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Group)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dosage_Information)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MedicineName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Group)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dosage_Information)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        @: <div class="text-muted">&nbsp;No Medicines found.</div>
+    }
+</div>
+
+
+

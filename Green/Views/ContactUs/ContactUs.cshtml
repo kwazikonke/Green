@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "ContactUs";
+}
+
+<h2>ContactUs</h2>
+
+<br />
+<div class="row top_margin">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h2 class="text-center">Success</h2>
+            </div>
+            <div class="panel-body">
+                <h4> <b>Thank you for.</b></h4>
+                <h4>
+                    Your Feedback was submitted  successfully.
+                    Please Click <b>Continue</b>  to Book Appointment :)
+                </h4>
+
+            </div>
+            <div class="panel-footer">
+                <a href="@Url.Action("Index","Doctor")" class="btn btn-success btn-success">Ok Continue</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

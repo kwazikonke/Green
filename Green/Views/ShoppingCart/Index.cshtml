@@ -1,0 +1,107 @@
+﻿@model Green.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+    <h2>Index</h2>
+   
+        @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+        {
+        }
+
+    @if (ViewBag.Err != null)
+    {
+        <h2 class="title text-center">@ViewBag.Err</h2>
+    }
+    else
+    {
+        <h2 class="title text-center">@ViewBag.Title</h2>
+    }
+    <h2 class="title text-center">@ViewBag.Err</h2>
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th hidden="hidden"></th>
+                <th>Image</th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.CartItems)
+            {
+                <tr>
+                    <td hidden="hidden">
+                        @Html.EditorFor(Item => item.CartId)
+                    </td>
+                    <td>
+                        @if (item.Product.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.Product.Picture);
+                            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                            <img src="@imgSrc" width="60" height="70" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(Item => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.EditorFor(Item => item.Count, new { htmlAttributes = new { @class = "form-control", @style = "width:100px" } })
+                    </td>
+                    <th>
+                        @item.Product.Price.ToString("R 0.00")
+                    </th>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "ShoppingCart", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="text" name="id" value="@item.RecordId" class="hidden" />
+                            <button type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+                        }
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td hidden="hidden"></td>
+                <td></td>
+                <td></td>
+                <td>
+                    Total:<b> @Model.CartTotal </b>
+                    @if (Model.CartItems.Count == 0)
+                    {
+
+                        <input type="submit" value="Update" class="btn btn-default disabled" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Update" class="btn btn-default" />
+                    }
+                </td>
+                <th>
+                    @Model.CartTotal.ToString("R 0.00")
+                </th>
+                <td></td>
+            </tr>
+            <tr>
+                <td hidden="hidden"></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="@Url.Action("ShoppingIndex", "ShoppingCart")" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to shopping</a>
+                </td>
+                <th>
+                    <a href="@Url.Action("Checkout", "ShoppingCart",new {vm= Model.CartItems })" class="btn btn-success"><i class="fa fa-lock"></i> Checkout</a>
+                </th>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Green.Models.DoctorModel>
+
+@{
+    ViewBag.Title = "AddDr";
+}
+
+<h2>AddDr</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Degree)
+        </th>
+      
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Degree)
+        </td>
+       
+        <td>
+            <a href="@Url.Action("Edit", "Doctor", new { id = item.DoctorID })" title="View Details" , rel="nofollow">
+                <img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)" style="width: 60px; height: 60px" alt="" />
+            </a>
+        </td>
+        <td>
+            @Html.ActionLink("Assign Dentist", "Create", new { Controller = "Rooms", Action = "Create", id = item.DoctorID })
+        </td>
+    </tr>
+}
+
+</table>

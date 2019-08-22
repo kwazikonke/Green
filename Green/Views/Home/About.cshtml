@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Green.ViewModels.AppointmentDateGroupViewModel>
+
+@{
+    ViewBag.Title = "Booked Appointments";
+}
+<body background="~/Images/5iUZmd4.png">
+
+    <h2>@ViewBag.Title</h2>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <strong>Statistics </strong>
+        </div>
+
+        @if (Model.Count() > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Appointments
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AppointmentDate)
+                        </td>
+                        <td>
+                            @item.PatientCount
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            @: <div class="text-muted">&nbsp;No appointments found.</div>
+        }
+        <div class="panel-footer">
+            <p class="box-title"><b>Booking Statistics till @String.Format("{0 : dddd, MMMM d, yyyy}", DateTime.Now)  : </b><span class="label label-primary">@Model.Count()</span></p>
+        </div>
+    </div>
+    </body>

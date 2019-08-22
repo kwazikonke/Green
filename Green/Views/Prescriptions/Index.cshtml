@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Green.Models.Prescription>
+@using Green.Helpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="pull-left">
+    @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span>", "Add new Prescription", "Create", "Prescriptions", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointmentModel.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dosage_Information)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointmentModel.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoctorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Picture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dosage_Information)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            <div class="pull-right">
+                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>", "Edit", "Edit", "Prescriptions", routeValues: new { id = item.PrescriptionID }, htmlAttributes: new { data_modal = "", @class = "btn btn-default" })
+                &nbsp;
+                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-search'></span>", "Details", "Details", "Prescriptions", routeValues: new { id = item.PrescriptionID }, htmlAttributes: new { data_modal = "", @class = "btn btn-default" })
+                &nbsp;
+                @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-trash'></span>", "Delete", "Delete", "Prescriptions", routeValues: new { id = item.PrescriptionID }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger" })
+            </div>
+        </td>
+    </tr>
+}
+
+</table>
